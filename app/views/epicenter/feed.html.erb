@@ -9,8 +9,9 @@
 	  	<div class="card">
 			  <div class="card-body">
 			    <h5 class="card-title">
-			    	<span><%= image_tag tweet.user.avatar.url, class: "img-thumbnail thumb-sm" %></span>
-			    	@<%= link_to tweet.user.username, show_user_path(id: tweet.user_id) %>
+			    	<span><%= image_tag tweet.user.avatar_url(:thumb), class: "img-thumbnail" %></span>
+			    	<%= time_ago_in_words(tweet.created_at) %> 
+			    	@<%= link_to tweet.user.username, show_user_path(id: tweet.user_id) %> tweeted
 			    </h5>
 			    <p class="card-text"><%= tweet.message.html_safe %></p>
 			    <a href="#" class="card-link">Card link</a>
