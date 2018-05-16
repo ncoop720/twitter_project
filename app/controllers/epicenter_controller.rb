@@ -3,6 +3,7 @@ class EpicenterController < ApplicationController
 	before_action :authenticate_user!
 	
   def feed
+    @tweet = Tweet.new
     @following_tweets = []
 
     Tweet.all.each do |tweet|
@@ -13,6 +14,7 @@ class EpicenterController < ApplicationController
 	end
 
   def show_user
+    @tweet = Tweet.new
   	@user = User.find(params[:id])
   end
 
@@ -29,4 +31,12 @@ class EpicenterController < ApplicationController
 
     redirect_to show_user_path(id: params[:id])
   end
+
+  def epi_tweet
+    @tweet = Tweet.create(message: params[:tweet][:message], user_id: params[:tweet][:user_id])
+    
+    redirect_to root_path
+  end
+
+
 end

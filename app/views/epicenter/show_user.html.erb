@@ -2,6 +2,8 @@
 <div class="row">
 	<div class="col-md-3"></div>
 	<div class="col-md-6">
+		<%= render 'epicenter/newtweet' %>
+		<hr>
 		<div class="text-center">
 			<h1>@<%= @user.username %></h1>
 			<p><%= image_tag @user.avatar.url, class: "img-thumbnail thumb-lg" %></p>
@@ -16,7 +18,7 @@
 				  <% else %>
 				    <%= link_to "Follow", now_following_path(id: @user.id), class: "btn btn-primary" %>
 				  <% end %>
-				 <% end %>
+				<% end %>
 			</p>
 			<h1>@<%= @user.username %>'s Tweets</h1>
 		</div>
