@@ -15,13 +15,13 @@ class Tweet < ApplicationRecord
 
 	  def link_check
 		  check = false
-		  if self.message.include?("http://") || self.message.include?("https://")
-		     check = true
-		  end	
+		  if self.message.include?("http://") || self.message.include?("https://") || self.message.include?("www.")
+		    	check = true
+		  end
 
 		  if check == true
 				arr = self.message.split
-				index = arr.map{|x| x.include? "http"}.index(true)
+				index = arr.map{|x| x.include?("http") || x.include?("www.")}.index(true)
 		    self.link = arr[index]
 		    if arr[index].length > 23
 			    arr[index] = "#{arr[index][0..20]}..."	
@@ -33,11 +33,15 @@ class Tweet < ApplicationRecord
 
 	  def apply_link
 			arr = self.message.split
-			index = arr.map {|x| x.include?("http://") || x.include?("https://")}.index(true)
+			index = arr.map {|x| x.include?("http://") || x.include?("https://") || x.include?("www.")}.index(true)
 
 			if index
 				url = arr[index]
-				arr[index] = "<a href='#{self.link}' target='_blank'>#{url}</a>"
+				if arr[index][0] == "w"
+					arr[index] = "<a href='http://#{self.link}' target='_blank'>#{url}</a>"
+				else
+					arr[index] = "<a href='#{self.link}' target='_blank'>#{url}</a>"
+				end
 			end
 
 			self.message = arr.join(" ")

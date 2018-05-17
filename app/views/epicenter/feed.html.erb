@@ -4,23 +4,21 @@
 	<div class="col-md-6">
 		<%= render 'epicenter/newtweet' %>
 		<hr>
-		<h1 class="text-center">@<%= current_user.username %>'s Twitter Feed</h1>
 	  <% @following_tweets.each do |tweet| %>
 	  	<div class="card">
 			  <div class="card-body">
-			    <h5 class="card-title">
-			    	<span><%= image_tag tweet.user.avatar_url(:thumb), class: "img-thumbnail" %></span>
-			    	<%= time_ago_in_words(tweet.created_at) %> 
-			    	@<%= link_to tweet.user.username, show_user_path(id: tweet.user_id) %> tweeted
-			    </h5>
-			    <p class="card-text"><%= tweet.message.html_safe %></p>
-			    <a href="#" class="card-link">Card link</a>
-			    <a href="#" class="card-link">Another link</a>
+			  	<div class="media">
+					  <%= image_tag tweet.user.avatar_url(:thumb), class: "rounded-circle", style: "margin-right: 10px" %>
+					  <div class="media-body">
+						    <p>
+						    	<%= tweet.user.name %> @<%= link_to tweet.user.username, show_user_path(id: tweet.user_id) %> • <%= time_ago_in_words(tweet.created_at) %> ago
+						    </p>
+						    <%= tweet.message.html_safe %>
+					  </div>
+					</div>
 			  </div>
 			</div>
-			<br>
 	  <% end %>
 	</div>
 </div>
-
 <br>

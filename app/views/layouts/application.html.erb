@@ -25,10 +25,13 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+            <%= link_to "Users", all_users_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+            <%= link_to "Following", following_path(id: current_user.id), class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Followers", followers_path(id: current_user.id), class: "nav-link" %>
           </li>
           <% if user_signed_in? %>
             <li class="nav-item dropdown">
