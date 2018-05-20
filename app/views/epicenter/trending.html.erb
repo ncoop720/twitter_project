@@ -1,0 +1,52 @@
+<br>
+<h3 class="text-center">Top 3 Tweeters</h3>
+<br>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Rank</th>
+      <th scope="col">Name</th>
+      <th scope="col">Handle</th>
+      <th scope="col"># of Tweets</th>
+    </tr>
+  </thead>
+  <tbody>
+  	<% @user_hash.each_with_index do |(key, value), index| %>
+	    <tr>
+	      <th scope="row"><%= index+1 %></th>
+	      <td><%= User.find(key).name %></td>
+	      <td>@<%= link_to User.find(key).username, show_user_path(id: User.find(key).id) %></td>
+	      <td><%= value %></td>
+	    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<h3 class="text-center">Top 3 Tags</h3>
+<br>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Rank</th>
+      <th scope="col">Tag</th>
+      <th scope="col">Count</th>
+    </tr>
+  </thead>
+  <tbody>
+  	<% @tweet_tag_hash.each_with_index do |(key, value), index| %>
+	    <tr>
+	      <th scope="row"><%= index+1 %></th>
+	      <td><%= link_to Tag.find(key).phrase, tag_tweets_path(id: key) %></td>
+	      <td><%= value %></td>
+	    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="text-center">
+	<%= link_to "Feed", feed_path %>
+</div>
+<br>

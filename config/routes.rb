@@ -19,6 +19,8 @@ Rails.application.routes.draw do
 
   get 'followers' => 'epicenter#followers'
 
+  get 'trending' => 'epicenter#trending'
+
   resources :tweets
   devise_for :users
   

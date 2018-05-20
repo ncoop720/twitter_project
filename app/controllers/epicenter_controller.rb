@@ -75,7 +75,8 @@ class EpicenterController < ApplicationController
   end
 
   def trending
-    
+    @user_hash = Tweet.group(:user_id).order('count_id desc').limit(3).count(:id)
+    @tweet_tag_hash = TweetTag.group(:tag_id).order('count_id desc').limit(3).count(:id)
   end
 
 end
