@@ -9,7 +9,10 @@
 			<p><%= image_tag @user.avatar_url(:show), class: "img-thumbnail" %></p>
 			<p>Name: <%= @user.name %></p>
 			<p>Location: <%= @user.location %></p>
-			<p>Bio:<br><%= @user.bio %></p>
+			<p>Bio: <%= @user.bio %></p>
+			<p>Number of Tweets: <%= @user.tweets.length %></p>
+			<p><%= link_to "Number of Followers: #{@followers}", followers_path(id: @user.id) %></p>
+			<p><%= link_to "Number Following: #{@user.following.length}", following_path(id: @user.id) %></p>
 
 			<p>
 				<% unless current_user.id == @user.id %>
@@ -38,7 +41,7 @@
 			<br>
 		<% end %>
 		<div class="text-center">
-			<%= link_to "Back to Feed", feed_path %>
+			<%= link_to "Feed", feed_path %>
 		</div>
 	</div>
 </div>

@@ -11,7 +11,7 @@
 					  <%= image_tag tweet.user.avatar_url(:thumb), class: "rounded-circle", style: "margin-right: 10px" %>
 					  <div class="media-body">
 						    <p>
-						    	<%= tweet.user.name %> @<%= link_to tweet.user.username, show_user_path(id: tweet.user_id) %> • <%= time_ago_in_words(tweet.created_at) %> ago
+						    	<%= tweet.user.name %> @<%= link_to tweet.user.username, show_user_path(id: tweet.user_id) %> • <%= time_ago_in_words(tweet.created_at) if Time.now - tweet.created_at < 86400 %><%= tweet.created_at.strftime('%b %e') if Time.now - tweet.created_at > 86400 %>
 						    </p>
 						    <%= tweet.message.html_safe %>
 					  </div>

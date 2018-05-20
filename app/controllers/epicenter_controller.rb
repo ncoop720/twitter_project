@@ -2,12 +2,13 @@ class EpicenterController < ApplicationController
 
 	before_action :authenticate_user!
   include TweetsHelper
+  include EpicenterHelper
 	
   def feed
     @tweet = Tweet.new
     @following_tweets = []
 
-    Tweet.all.each do |tweet|
+    Tweet.order(created_at: :desc).each do |tweet|
       if current_user.following.include?(tweet.user_id) || current_user.id == tweet.user_id
         @following_tweets.push(tweet)
       end
@@ -17,6 +18,7 @@ class EpicenterController < ApplicationController
   def show_user
     @tweet = Tweet.new
   	@user = User.find(params[:id])
+    @followers = number_of_followers(@user)
   end
 
   def all_users
@@ -70,6 +72,10 @@ class EpicenterController < ApplicationController
 
   def tag_tweets
     @tag = Tag.find(params[:id])
+  end
+
+  def trending
+    
   end
 
 end

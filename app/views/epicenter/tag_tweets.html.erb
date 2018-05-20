@@ -1,11 +1,28 @@
-<h1>Messages with <%= @tag.phrase %></h1>
+<h1 class="text-center">Messages with <%= @tag.phrase %></h1>
 
 <div class="row">
-  <div>
+  <div class="col-md-3"></div>
+	<div class="col-md-6">
     <% @tag.tweets.order(created_at: :desc).each do |tweet| %>
-      <p> <%= tweet.user.name %> <%= "@#{tweet.user.username}" %>
-		    • <%= time_ago_in_words(tweet.created_at) %></p>
-			<p><%= tweet.message.html_safe %></p>
+	    <div class="card">
+			  <div class="card-body">
+			  	<div class="media">
+					  <%= image_tag tweet.user.avatar_url(:thumb), class: "rounded-circle", style: "margin-right: 10px" %>
+					  <div class="media-body">
+						    <p>
+						    	<%= tweet.user.name %> @<%= link_to tweet.user.username, show_user_path(id: tweet.user_id) %> • <%= time_ago_in_words(tweet.created_at) if Time.now - tweet.created_at < 86400 %><%= tweet.created_at.strftime('%b %e') if Time.now - tweet.created_at > 86400 %>
+						    </p>
+						    <%= tweet.message.html_safe %>
+					  </div>
+					</div>
+			  </div>
+			</div>
     <% end %>
    </div>
 </div>
+<br>
+
+<div class="text-center">
+	<%= link_to "Feed", feed_path %>
+</div>
+<br>

@@ -1,3 +1,8 @@
-<h3>Your Followers</h3>
+<h3 class="text-center">@<%= @user.username %>'s Followers</h3>
 
 <%= render "user_list" %>
+
+<div class="text-center">
+	<%= link_to "Feed", feed_path %> |
+	<%= link_to "@#{@user.username}'s Profile", show_user_path(id: @user.id) %>
+</div>
