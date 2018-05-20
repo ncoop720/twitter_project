@@ -4,6 +4,7 @@
 	<div class="col-md-6">
 		<div class="text-center">
 			<h1>@<%= @user.username %></h1>
+			<br>
 			<p><%= image_tag @user.avatar_url(:show), class: "img-thumbnail" %></p>
 			<p>Name: <%= @user.name %></p>
 			<p>Location: <%= @user.location %></p>
@@ -39,7 +40,8 @@
 			<br>
 		<% end %>
 		<div class="text-center">
-			<%= link_to "Feed", feed_path %>
+			<%= link_to "Feed", feed_path %> |
+			<%= link_to "Trending", trending_path %>
 		</div>
 	</div>
 </div>

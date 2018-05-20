@@ -1,4 +1,6 @@
+<br>
 <h1 class="text-center">Messages with <%= @tag.phrase %></h1>
+<br>
 
 <div class="row">
   <div class="col-md-3"></div>
@@ -17,12 +19,14 @@
 					</div>
 			  </div>
 			</div>
+			<br>
     <% end %>
    </div>
 </div>
 <br>
 
 <div class="text-center">
-	<%= link_to "Feed", feed_path %>
+	<%= link_to "Feed", feed_path %> |
+	<%= link_to "Trending", trending_path %>
 </div>
 <br>
