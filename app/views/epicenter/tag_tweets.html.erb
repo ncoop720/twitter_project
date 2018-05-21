@@ -26,7 +26,10 @@
 <br>
 
 <div class="text-center">
-	<%= link_to "Feed", feed_path %> |
-	<%= link_to "Trending", trending_path %>
+	<div class="btn-group">
+		<%= link_to "Feed", feed_path, class: "btn btn-primary" %>
+		<%= link_to "Trending", trending_path, class: "btn btn-primary" %>
+	</div>
 </div>
+
 <br>

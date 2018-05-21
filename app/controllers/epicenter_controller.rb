@@ -13,6 +13,7 @@ class EpicenterController < ApplicationController
         @following_tweets.push(tweet)
       end
     end
+
 	end
 
   def show_user
@@ -34,6 +35,7 @@ class EpicenterController < ApplicationController
         @users.push(user)
       end
     end
+
   end
 
   def followers
@@ -45,6 +47,7 @@ class EpicenterController < ApplicationController
         @users.push(user)
       end
     end
+    
   end
 
   def now_following
@@ -75,7 +78,9 @@ class EpicenterController < ApplicationController
   end
 
   def trending
-    @user_hash = Tweet.group(:user_id).order('count_id desc').limit(3).count(:id)
+    # Hash of top 3 tweeters
+    @tweet_hash = Tweet.group(:user_id).order('count_id desc').limit(3).count(:id)
+    # Hash of top 3 tags
     @tweet_tag_hash = TweetTag.group(:tag_id).order('count_id desc').limit(3).count(:id)
   end
 

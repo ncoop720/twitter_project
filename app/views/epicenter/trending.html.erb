@@ -8,11 +8,11 @@
       <th scope="col">Rank</th>
       <th scope="col">Name</th>
       <th scope="col">Handle</th>
-      <th scope="col"># of Tweets</th>
+      <th scope="col">Total Tweets</th>
     </tr>
   </thead>
   <tbody>
-  	<% @user_hash.each_with_index do |(key, value), index| %>
+  	<% @tweet_hash.each_with_index do |(key, value), index| %>
 	    <tr>
 	      <th scope="row"><%= index+1 %></th>
 	      <td><%= User.find(key).name %></td>
@@ -49,6 +49,6 @@
 <hr>
 
 <div class="text-center">
-	<%= link_to "Feed", feed_path %>
+	<%= link_to "Feed", feed_path, class: "btn btn-primary" %>
 </div>
 <br>
